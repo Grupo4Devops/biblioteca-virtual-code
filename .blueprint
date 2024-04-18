@@ -1,0 +1,40 @@
+created:
+    - app/Http/Controllers/UserController.php
+    - app/Http/Controllers/BookController.php
+    - app/Http/Controllers/ReviewController.php
+    - app/Http/Controllers/ViewController.php
+    - app/Http/Controllers/GenderController.php
+    - app/Http/Controllers/BookGenderController.php
+    - database/factories/UserFactory.php
+    - database/factories/BookFactory.php
+    - database/factories/ReviewFactory.php
+    - database/factories/ViewFactory.php
+    - database/factories/GenderFactory.php
+    - database/factories/BookGenderFactory.php
+    - database/migrations/2023_05_06_154831_create_users_table.php
+    - database/migrations/2023_05_06_154832_create_books_table.php
+    - database/migrations/2023_05_06_154833_create_reviews_table.php
+    - database/migrations/2023_05_06_154834_create_views_table.php
+    - database/migrations/2023_05_06_154835_create_genders_table.php
+    - database/migrations/2023_05_06_154836_create_book_genders_table.php
+    - app/Models/User.php
+    - app/Models/Book.php
+    - app/Models/Review.php
+    - app/Models/View.php
+    - app/Models/Gender.php
+    - app/Models/BookGender.php
+    - tests/Feature/Http/Controllers/UserControllerTest.php
+    - tests/Feature/Http/Controllers/BookControllerTest.php
+    - tests/Feature/Http/Controllers/ReviewControllerTest.php
+    - tests/Feature/Http/Controllers/ViewControllerTest.php
+    - tests/Feature/Http/Controllers/GenderControllerTest.php
+    - tests/Feature/Http/Controllers/BookGenderControllerTest.php
+updated:
+    - routes/web.php
+models:
+    User: { name: varchar, password: varchar, email: varchar }
+    Book: { title: varchar, author: varchar, publisher: varchar, year_published: integer, description: varchar, image: varchar, file: varchar }
+    Review: { comment: varchar, rating: integer, date: date, user_id: id, book_id: id }
+    View: { user_id: id, book_id: id }
+    Gender: { name: varchar }
+    BookGender: { book_id: id, gender_id: id }

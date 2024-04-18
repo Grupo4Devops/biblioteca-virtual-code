@@ -1,0 +1,46 @@
+version: '3'
+services:
+
+  jenkins:
+    build:
+      context: .
+      dockerfile: Dockerfile.jenkins
+    image: jenkins-sonar:latest
+    container_name: jenkins-bv
+    ports:
+      - 50000:50000
+      - 9091:8080
+    restart: always
+    volumes:
+      - jenkins_data_bp:/var/jenkins_home
+      - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      - lab5-network
+volumes:
+  jenkins_data_bp:
+    name: jenkins_data_bp
+
+networks:
+  lab5-network:
+      external: true
+
+
+# TODO: docker-compose -f docker-compose-ci.yml up
+# docker network create lab5-network
+# Para obtener la contraseña:
+# docker exec -it jenkins-bv /bin/bash
+# cat /var/jenkins_home/secrets/initialAdminPassword
+# sudo su root
+# password: grupo4Cuatro
+# sudo usermod -aG docker jenkins
+# exit
+
+
+# ejecutar jenkins en docker
+# docker run -d --rm -p 50000:50000 -p 9091:8080 --name jenkins-bv teo300699/r-jenkins-bv:latest
+
+
+# subir docker
+# docker tag jenkins-sonar:latest teo300699/r-jenkins-bv:latest
+# docker push teo300699/r-jenkins-bv:latest
+

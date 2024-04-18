@@ -1,0 +1,60 @@
+version: '3'
+
+services:
+  db:
+    container_name: mysql
+    image: mysql:8.0
+    volumes:
+      - db_data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: grupocuatro
+      MYSQL_DATABASE: grupo4
+      MYSQL_USER: grupo4
+      MYSQL_PASSWORD: grupocuatro
+    ports:
+      - "3306:3306"
+    restart: always
+    networks:
+      - lab5-network
+
+  phpmyadmin:
+    container_name: phpmyadmin-bp
+    image: phpmyadmin/phpmyadmin
+    depends_on:
+      - db
+    environment:
+      PMA_HOST: db
+      MYSQL_ROOT_PASSWORD: grupocuatro
+    ports:
+      - "8081:80"
+    restart: always
+    networks:
+      - lab5-network
+
+  server:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    image: biblioteca_virtual
+    restart: always
+    container_name: biblioteca_virtual
+    depends_on:
+      - db
+    ports:
+      - "8082:80"
+    volumes:
+      - storage_data:/var/www/html/storage
+    networks:
+      - lab5-network
+
+volumes:
+  db_data: {}
+  storage_data: {}
+
+networks:
+  lab5-network:
+    driver: bridge
+
+
+# subir docker a la nube:
+# docker push teo300699/r-servidor-bv:1.0

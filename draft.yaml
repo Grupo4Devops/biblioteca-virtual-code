@@ -1,0 +1,51 @@
+models:
+  User:
+    name: varchar
+    password: varchar
+    email: varchar
+
+  Book:
+    title: varchar
+    author: varchar
+    publisher: varchar
+    year_published: integer
+    description: varchar
+    image: varchar
+    file: varchar
+
+  Review:
+    comment: varchar
+    rating: integer
+    date: date
+    user_id: id
+    book_id: id
+
+  View:
+    user_id: id
+    book_id: id
+
+  Gender:
+    name: varchar
+
+  BookGender:
+    book_id: id
+    gender_id: id
+
+controllers:
+  UserController:
+    resource: true
+
+  BookController:
+    resource: true
+
+  ReviewController:
+    resource: true
+
+  ViewController:
+    resource: true
+
+  GenderController:
+    resource: true
+
+  BookGenderController:
+    resource: true
