@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Review;
 use App\Models\Book;
 use Illuminate\Support\Facades\Auth;
-
+// Clase para reseñar libros
 class ReviewController extends Controller
 {
     public function store(Request $request, $book_id)
