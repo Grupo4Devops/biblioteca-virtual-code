@@ -10,11 +10,13 @@ use Illuminate\Validation\Rules\Password;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
 
+//Se procedieron a hacer cambios en la funcion store
 class UserController extends Controller
 {
     public function index()
     {
         return view('user.index');
+        
     }
 
 
