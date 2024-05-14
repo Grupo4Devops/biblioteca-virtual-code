@@ -77,3 +77,4 @@ pipeline {
 
 
 // sudo chmod 777 /var/run/docker.sock
+// Nuevo comentario
