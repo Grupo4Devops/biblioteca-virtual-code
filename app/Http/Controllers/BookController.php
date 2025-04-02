@@ -8,6 +8,7 @@ use App\Models\Review;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
+// Clase para la gestion de libros
 class BookController extends Controller
 {
 

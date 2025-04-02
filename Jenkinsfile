@@ -57,19 +57,6 @@ pipeline {
             }
         }
 
-        stage('Iniciar Sesión en DockerHub') {
-            steps {
-                script {
-                    sh 'docker login -u teo300699 -p javierin123'
-
-                    echo "--- USUARIO DOCKERHUB LOGUEADO ---"
-                }
-            }
-        }
-
-        // Publicar imagen actualizada en DockerHub
-
-
         stage('Desplegar a produccion') {
             steps {
                 sh 'docker stop biblioteca_virtual_produccion && docker rm -f biblioteca_virtual_produccion'
@@ -78,7 +65,7 @@ pipeline {
                 sh 'docker exec biblioteca_virtual_produccion chmod -R 775 /var/www/html/storage'
                 sh 'docker exec biblioteca_virtual_produccion php artisan migrate:fresh --seed'
                 sh 'docker exec biblioteca_virtual_produccion php artisan cache:clear'
-                
+
                 // sh 'docker exec biblioteca_virtual_produccion php artisan storage:link'
 
                 echo '--- PROYECTO DESPLEGADO EN PRODUCCION ---'
@@ -86,15 +73,8 @@ pipeline {
         }
     }
 
-    post{
-        always {
-            sh 'docker logout'
-
-            echo "--- USUARIO DOCKERHUB CERRO SESIÓN ---"
-        }
-    }
-
 }
 
 
 // sudo chmod 777 /var/run/docker.sock
+// Nuevo comentario
